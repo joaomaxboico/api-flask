@@ -10,5 +10,7 @@ def hello_world():
 
 
 if __name__ == "__main__":  # Executa a aplicação flask
-    app.run(port=8008)  # inicia a aplicação na porta 8008
+    app.run()  # inicia a aplicação na porta 8008
 # teste git novo
+
+    # flask run --port 8008 ---Executar rodando em outra porta
