@@ -1,25 +1,27 @@
-# from flask import Flask  # Importação do Flask
 from flask import Flask, request, jsonify
+import redis    # Biblio
+import json     # B. Requisito p dumps
 
-app = Flask(__name__)  # Cria instância (aplicação flask)
+app = Flask(__name__)
+# Cria cliente redis e conecta
+redis_client = redis.Redis(host='localhost', port=6379, db=0)
 
 
-# Define rota, qd se mapeia pasta pelo POST, chama função com o retorno.
 @app.route("/sorter/", methods=["POST"])
 def retorna_json():
-    # Exemplo de resposta JSON
+
     data = request.get_json()  # Obtém dados JSON da requisição
+    # Armazena dados json no redis chave data, dumps converte obj py data em string json
+    redis_client.set('data', json.dumps(data))
+
     response = {
         "message": "Recebido com sucesso",
         "data": data
     }
-    return jsonify(response)  # Retorna a resposta JSON
+    return jsonify(response)
 
 
-if __name__ == "__main__":  # Executa a aplicação flask
+if __name__ == "__main__":
     app.run()
 
-    # Executar rodando em outra porta:
-    # flask run --port 8008
-
-    # Postman localhost:8008/sorter
+    # flask run --port 9009
