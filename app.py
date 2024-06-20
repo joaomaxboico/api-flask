@@ -11,7 +11,7 @@ redis_client = redis.Redis(host='localhost', port=6379, db=0)
 def retorna_json():
 
     data = request.get_json()  # Obtém dados JSON da requisição
-    # Armazena dados json no redis chave data, dumps converte obj py data em string json
+    # Armaz json no redis chave data, dumps converte obj py data em string json
     redis_client.set('data', json.dumps(data))
 
     response = {

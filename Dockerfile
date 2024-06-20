@@ -7,7 +7,7 @@ ENV PYTHONUNBUFFERED=1
 WORKDIR /app
 
 #Copiar arquivo de requirements.txt
-COPY requirements.txt
+COPY requirements.txt ./
 
 #Instalando as bibliotacas necessárias para aplicação
 RUN pip install --no-cache-dir -r requirements.txt
