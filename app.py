@@ -4,7 +4,7 @@ import json     # B. Requisito p dumps
 
 app = Flask(__name__)
 # Cria cliente redis e conecta
-redis_client = redis.Redis(host='localhost', port=6379, db=0)
+redis_client = redis.Redis(host='redis-container', port=6379)
 
 
 @app.route("/sorter/", methods=["POST"])
